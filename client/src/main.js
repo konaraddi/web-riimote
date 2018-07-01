@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import Vue from 'vue'
-import server_url from './server_url'
-Vue.prototype.$socket = io(`${server_url}`)
+import server_address from './server_address'
+Vue.prototype.$socket = io(`${server_address}`)
 import App from './App.vue'
 import router from './router'
 import store from './store'

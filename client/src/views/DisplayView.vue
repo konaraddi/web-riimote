@@ -1,15 +1,22 @@
 <template>
 <div>
 <h1>DisplayView</h1>
-<p>X: {{xAxisDegrees}}°</p>
-<p>Y: {{yAxisDegrees}}°</p>
-<p>Z: {{zAxisDegrees}}°</p>
+<CoordinatesDisplay 
+  :xAxisDegrees = 'xAxisDegrees' 
+  :yAxisDegrees = 'yAxisDegrees' 
+  :zAxisDegrees = 'zAxisDegrees'
+/>
 </div>
 </template>
 
 <script>
+import CoordinatesDisplay from "../components/CoordinatesDisplay.vue";
+
 export default {
   name: "DisplayView",
+  components: {
+    CoordinatesDisplay
+  },
   mounted() {
     this.$socket.on("COORDINATES", data => {
       this.xAxisDegrees = data.x;
