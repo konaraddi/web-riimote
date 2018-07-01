@@ -10,13 +10,23 @@ Your smartphone can simulate a wiimote _without_ having to install anything.
 ```js
 // exporting link to server
 const PORT = 3000
-const IP_ADDRESS = '123.456.7.890' 
+const IP_ADDRESS = '123.456.7.890' // replace this with your laptop's public ip address so you can test it out on your own network
 export default `${IP_ADDRESS}:${PORT}`
 ```
 The `server_address.js` file is imported in `client/src/main.js` and is used when adding the `$socket` instance property to Vue.
 
-Relevant Links:
+The `DisplayView` is meant to be visited by a laptop. The `ControllerView` is meant to be visited by the smartphone. The smartphone acts as a remote for the laptop.
 
-https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation
+## Built With
+* [Vue.js](https://vuejs.org/) - front end JavaScript framework
+* [Node.js](https://nodejs.org/en/) - back end JavaScript framework/runtime
+* [Socket.io](https://socket.io/) - for "real-time bidirectional event-based communication"
 
-https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
+## Acknowledgements
+The wiimote cursor image came from [wiibrew.org](http://wiibrew.org/wiki/Wii_Homebrew_Cursors).
+This project was inspired by an [Android Experiments Winner](https://experiments.withgoogle.com/3d-controller).
+
+## Relevant Links:
+Device Orientation:
+* https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation
+* https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
