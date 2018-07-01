@@ -10,8 +10,8 @@ const io = new socket(server);
 
 io.on("connection", function(socket) {
   console.log("a user connected");
-  socket.on("SEND_MESSAGE", function(data) {
-    io.emit("MESSAGE", data);
+  socket.on("SEND_COORDINATES", function(data) {
+    io.emit("COORDINATES", data);
   });
 });
 

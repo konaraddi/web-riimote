@@ -1,7 +1,9 @@
 <template>
 <div>
 <h1>DisplayView</h1>
-<p>{{messageFromControllerView}}</p>
+<p>X: {{xAxisDegrees}}°</p>
+<p>Y: {{yAxisDegrees}}°</p>
+<p>Z: {{zAxisDegrees}}°</p>
 </div>
 </template>
 
@@ -9,13 +11,17 @@
 export default {
   name: "DisplayView",
   mounted() {
-    this.$socket.on("MESSAGE", data => {
-      this.messageFromControllerView = data.message;
+    this.$socket.on("COORDINATES", data => {
+      this.xAxisDegrees = data.x;
+      this.yAxisDegrees = data.y;
+      this.zAxisDegrees = data.z;
     });
   },
   data() {
     return {
-      messageFromControllerView: ""
+      xAxisDegrees: null,
+      yAxisDegrees: null,
+      zAxisDegrees: null
     };
   }
 };

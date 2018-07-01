@@ -1,25 +1,46 @@
 <template>
 <div>
 <h1>ControllerView</h1>
-<input v-model="messageToDisplay">
-<button @click="sendMessageToDisplay">Display Message</button>
+<h3>Supports device orientation: {{deviceOrientationSupported}}</h3>
+<p>X: {{xAxisDegrees}}°</p>
+<p>Y: {{yAxisDegrees}}°</p>
+<p>Z: {{zAxisDegrees}}°</p>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'ControllerView',
-  data(){
-    return{
-      messageToDisplay: ''
+  name: "ControllerView",
+  mounted() {
+    // check if we can access the device's orientation
+    // if we can, then attach an event listener to it
+    if (window.DeviceOrientationEvent) {
+      this.deviceOrientationSupported = true;
+      window.addEventListener("deviceorientation", this.handleOrientation);
     }
   },
+  data() {
+    return {
+      deviceOrientationSupported: false,
+      xAxisDegrees: null, // -180 to 180
+      yAxisDegrees: null, // -90 to 90
+      zAxisDegrees: null, // 0 to 360
+    };
+  },
   methods: {
-    sendMessageToDisplay(){
-      this.$socket.emit('SEND_MESSAGE', {
-        message: this.messageToDisplay
-      })
+    sendCoordinatesToDisplayView(x, y, z) {
+      this.$socket.emit("SEND_COORDINATES", {
+        x,
+        y,
+        z
+      });
+    },
+    handleOrientation(event) {
+      this.xAxisDegrees = Math.round(event.beta);
+      this.yAxisDegrees = Math.round(event.gamma);
+      this.zAxisDegrees = Math.round(event.alpha);
+      this.sendCoordinatesToDisplayView(this.xAxisDegrees, this.yAxisDegrees, this.zAxisDegrees)
     }
   }
-}
+};
 </script>
