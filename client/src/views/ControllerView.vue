@@ -35,6 +35,7 @@ export default {
     };
   },
   methods: {
+    // notifies the DisplayView of the controller's x, y, and z angles
     sendCoordinatesToDisplayView(x, y, z) {
       this.$socket.emit("SEND_COORDINATES", {
         x,
@@ -43,9 +44,11 @@ export default {
       });
     },
     handleOrientation(event) {
+      // obtains x y z angles
       this.xAxisDegrees = Math.round(event.beta);
       this.yAxisDegrees = Math.round(event.gamma);
       this.zAxisDegrees = Math.round(event.alpha);
+      // share x y z angles with DisplayView
       this.sendCoordinatesToDisplayView(
         this.xAxisDegrees,
         this.yAxisDegrees,
