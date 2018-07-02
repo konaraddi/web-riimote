@@ -1,12 +1,7 @@
 <template>
 <div>
 <h1>ControllerView</h1>
-<h3>Supports device orientation: {{deviceOrientationSupported}}</h3>
-<CoordinatesDisplay 
-  :xAxisDegrees = 'xAxisDegrees' 
-  :yAxisDegrees = 'yAxisDegrees' 
-  :zAxisDegrees = 'zAxisDegrees'
-/>
+<h3>Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
 </div>
 </template>
 
@@ -29,6 +24,9 @@ export default {
   data() {
     return {
       deviceOrientationSupported: false,
+      
+      // using Euler angles
+      // see https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
       xAxisDegrees: null, // -180 to 180
       yAxisDegrees: null, // -90 to 90
       zAxisDegrees: null // 0 to 360

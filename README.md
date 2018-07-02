@@ -4,6 +4,8 @@ Your smartphone can simulate a wiimote _without_ having to install anything.
 
 ## Getting Started
 
+Please be familiar with Vue, Node, Koa, and Socket.io. The client uses Vue. The server uses Node, Koa, and Socket.io.
+
 1. `npm install` in both `client/` and `server/`
 2. `npm run serve` in both `client/` and `server/`
 3. Create a `server_address.js` file in `client/src/` with the following contents:
@@ -20,11 +22,12 @@ The `DisplayView` is meant to be visited by a laptop. The `ControllerView` is me
 ## Built With
 * [Vue.js](https://vuejs.org/) - front end JavaScript framework
 * [Node.js](https://nodejs.org/en/) - back end JavaScript framework/runtime
+* [Koa](https://koajs.com/) - "a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs"
 * [Socket.io](https://socket.io/) - for "real-time bidirectional event-based communication"
 
 ## Acknowledgements
 The wiimote cursor image came from [wiibrew.org](http://wiibrew.org/wiki/Wii_Homebrew_Cursors).
-This project was inspired by an [Android Experiments Winner](https://experiments.withgoogle.com/3d-controller).
+This project was inspired by the [2016 Android Experiments Winner](https://experiments.withgoogle.com/3d-controller).
 
 ## Relevant Links:
 Device Orientation:
