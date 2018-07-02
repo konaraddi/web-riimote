@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import CoordinatesDisplay from "../components/CoordinatesDisplay.vue";
+import EulerAnglesDisplay from "../components/EulerAnglesDisplay.vue";
 
 export default {
   name: "ControllerView",
   components: {
-    CoordinatesDisplay
+    EulerAnglesDisplay
   },
   mounted() {
     // check if we can access the device's orientation
@@ -24,34 +24,30 @@ export default {
   data() {
     return {
       deviceOrientationSupported: false,
-      
-      // using Euler angles
+
+      // using Euler angles of the device on controllerview (smartphone)
       // see https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
-      xAxisDegrees: null, // -180 to 180
-      yAxisDegrees: null, // -90 to 90
-      zAxisDegrees: null // 0 to 360
+      eulerAngles: {
+        x: null, // -180 to 180
+        y: null, // -90 to 90
+        z: null // 0 to 360
+      }
     };
   },
   methods: {
     // notifies the DisplayView of the controller's x, y, and z angles
-    sendCoordinatesToDisplayView(x, y, z) {
-      this.$socket.emit("SEND_COORDINATES", {
-        x,
-        y,
-        z
-      });
+    sendEulerAnglesToDisplayView(eulerAngles) {
+      this.$socket.emit("SEND_EULER_ANGLES", eulerAngles);
     },
     handleOrientation(event) {
       // obtains x y z angles
-      this.xAxisDegrees = Math.round(event.beta);
-      this.yAxisDegrees = Math.round(event.gamma);
-      this.zAxisDegrees = Math.round(event.alpha);
+      this.eulerAngles = {
+        x: Math.round(event.beta),
+        y: Math.round(event.gamma),
+        z: Math.round(event.alpha)
+      }
       // share x y z angles with DisplayView
-      this.sendCoordinatesToDisplayView(
-        this.xAxisDegrees,
-        this.yAxisDegrees,
-        this.zAxisDegrees
-      );
+      this.sendEulerAnglesToDisplayView(this.eulerAngles);
     }
   }
 };
