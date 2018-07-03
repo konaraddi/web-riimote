@@ -1,6 +1,6 @@
 <template>
 <div>
-<h1>DisplayView</h1>
+<h1 class="title is-1">Main Display</h1>
 <EulerAnglesDisplay 
   :eulerAngles="eulerAnglesOfController"
 />

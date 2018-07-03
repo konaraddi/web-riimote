@@ -1,6 +1,6 @@
 <template>
 <div>
-<h1>ControllerView</h1>
+<h1 class="title is-1">ControllerView</h1>
 <h3>Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
 </div>
 </template>
