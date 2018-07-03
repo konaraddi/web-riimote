@@ -1,8 +1,9 @@
 <template>
 <div>
 <h1 class="title is-1">Main Display</h1>
-<EulerAnglesDisplay 
+<DeviceStatsDisplay 
   :eulerAngles="eulerAnglesOfController"
+  :acceleration="acceleration"
 />
 <WiiCursor 
   :rotation='eulerAnglesOfController.y * 2' 
@@ -13,13 +14,13 @@
 </template>
 
 <script>
-import EulerAnglesDisplay from "../components/EulerAnglesDisplay.vue";
+import DeviceStatsDisplay from "../components/DeviceStatsDisplay.vue";
 import WiiCursor from "../components/WiiCursor.vue";
 
 export default {
   name: "DisplayView",
   components: {
-    EulerAnglesDisplay,
+    DeviceStatsDisplay,
     WiiCursor
   },
   mounted() {
@@ -27,9 +28,19 @@ export default {
     this.$socket.on("EULER_ANGLES", eulerAngles => {
       this.eulerAnglesOfController = eulerAngles;
     });
+
+    // start listening for rate of acceleration from ControllerView
+    this.$socket.on("ACCELERATION", acceleration => {
+      this.acceleration = acceleration;
+    });
   },
   data() {
     return {
+      acceleration: {
+        x: null,
+        y: null,
+        z: null
+      },
       eulerAnglesOfController: {
         x: null,
         y: null,

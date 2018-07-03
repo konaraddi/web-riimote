@@ -43,7 +43,7 @@ $family-primary: "IBM Plex Sans", sans-serif;
 @import "~buefy/src/scss/buefy";
 
 html {
-  padding-top: 4rem;
+  padding-top: 2rem;
   @extend .has-background-light;
 
   @include tablet {
@@ -62,6 +62,6 @@ a {
 }
 
 .nav {
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 </style>
