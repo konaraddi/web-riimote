@@ -17,12 +17,13 @@
   <br>
   Z: {{acceleration.z}} m/s<sup>2</sup>
 </p>
+<mark v-if="userIsShaking">Shaking detected</mark>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'DeviceStatsDisplay',
+  name: "DeviceStatsDisplay",
   props: {
     eulerAngles: {
       type: Object,
@@ -43,6 +44,20 @@ export default {
       },
       description: "Contains the x y z acceleration"
     }
+  },
+  computed: {
+    userIsShaking() {
+      const threshold = 12
+      if (
+        Math.abs(this.acceleration.x) > threshold ||
+        Math.abs(this.acceleration.y) > threshold ||
+        Math.abs(this.acceleration.z) > threshold
+      ) {
+        // user is shaking
+        return true;
+      }
+      return false;
+    }
   }
-}
+};
 </script>

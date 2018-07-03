@@ -11,7 +11,7 @@ const io = new socket(server);
 io.on("connection", function(socket) {
   console.log("a user connected");
   socket.on("SEND_EULER_ANGLES", function(data) {
-    console.log("euler")
+    io.emit("EULER_ANGLES", data);
   });
   socket.on("SEND_ACCELERATION", function(data) {
     io.emit("ACCELERATION", data);
