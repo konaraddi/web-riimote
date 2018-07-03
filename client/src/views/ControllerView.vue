@@ -3,10 +3,12 @@
 <h1 class="title is-1">Controller</h1>
 <h3>Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
 <br>
+<!--
 <DeviceStatsDisplay 
   :eulerAngles="eulerAngles"
   :acceleration="acceleration"
 />
+-->
 </div>
 </template>
 

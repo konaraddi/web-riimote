@@ -6,11 +6,15 @@
   :acceleration="acceleration"
 />
 <WiiCursor 
+  v-if="userIsPointingAtScreen"
   :rotation='eulerAnglesOfController.y * 2' 
   :xAxisPosition="cursor_xAxisPosition" 
   :yAxisPosition="cursor_yAxisPosition"
 />
-<WiiWheel :rotation='eulerAnglesOfController.x'/>
+<WiiWheel 
+  v-if="!userIsPointingAtScreen"
+  :rotation='eulerAnglesOfController.x'
+/>
 </div>
 </template>
 
@@ -72,6 +76,18 @@ export default {
       newX = newX < -20 ? -20 : newX;
       newX += 20; // 40 > z > 0
       return 100 - Math.round(newX / 40 * 100);
+    },
+    // detect if the user is pointing at the main display
+    userIsPointingAtScreen() {
+      if (
+        120 >= this.eulerAnglesOfController.z &&
+        this.eulerAnglesOfController.z >= 60 &&
+        30 >= this.eulerAnglesOfController.x &&
+        this.eulerAnglesOfController.x >= -30
+      ) {
+        return true
+      }
+      return false;
     }
   }
 };
