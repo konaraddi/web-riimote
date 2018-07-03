@@ -30,6 +30,7 @@ export default {
 <style scoped>
 img {
   position: fixed;
+  z-index: 100;
   /* 
   The below is to offset for the image's width and length
   so that a `top: 50%` and `left: 50%` will center the image. 

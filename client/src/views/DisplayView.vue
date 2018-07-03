@@ -10,18 +10,21 @@
   :xAxisPosition="cursor_xAxisPosition" 
   :yAxisPosition="cursor_yAxisPosition"
 />
+<WiiWheel :rotation='eulerAnglesOfController.x'/>
 </div>
 </template>
 
 <script>
 import DeviceStatsDisplay from "../components/DeviceStatsDisplay.vue";
 import WiiCursor from "../components/WiiCursor.vue";
+import WiiWheel from "../components/WiiWheel.vue";
 
 export default {
   name: "DisplayView",
   components: {
     DeviceStatsDisplay,
-    WiiCursor
+    WiiCursor,
+    WiiWheel
   },
   mounted() {
     // start listening for Euler angles from ControllerView
