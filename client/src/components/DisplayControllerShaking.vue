@@ -47,4 +47,7 @@ export default {
 h3 {
   margin-bottom: 0 !important;
 }
+img {
+  opacity: 0.85;
+}
 </style>

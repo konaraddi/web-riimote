@@ -15,8 +15,15 @@ to be used by the main display.
 <ThePrerequisitesModal :onCloseFunction='attemptToAttachEventListener'/>
 
 <h1 class="title is-1">Controller</h1>
-<h3>Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
-
+<h3 class="title is-3">Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
+<div v-if="!deviceOrientationSupported">
+  <p>
+  Sorry, this device or browser is not supported.
+  In order for this to work, the device and browser need to support DeviceOrientationEvent.
+  </p>
+  <br>
+  <p>The author tested this app with Chrome on the Moto X4 (Android One version).</p>
+</div>
 </div>
 </template>
 
@@ -31,7 +38,7 @@ export default {
   data() {
     return {
       isPrerequisitesModalActive: true,
-      deviceOrientationSupported: window.DeviceOrientationEvent ? true : false,
+      deviceOrientationSupported: !!window.DeviceOrientationEvent,
 
       // using Euler angles of the device on controllerview (smartphone)
       // see https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
