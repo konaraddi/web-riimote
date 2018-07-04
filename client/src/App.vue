@@ -1,14 +1,44 @@
 <template>
   <section id="app" class="section">
+    <!--
     <div class="nav">
       <router-link to="/">DisplayView</router-link> |
       <router-link to="/controller-view">ControllerView</router-link>
     </div>
+    -->
     <keep-alive>
       <router-view/>
     </keep-alive>
   </section>
 </template>
+
+<script>
+export default {
+  name: "App",
+  mounted() {
+
+    // get user's screen's width
+    // https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
+
+    const w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName("body")[0];
+    const screenWidth = w.innerWidth || e.clientWidth || g.clientWidth;
+
+    // check if user is on mobile using screen width and user agent string
+    const userIsOnMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    ) && screenWidth < 768; // screenWidth is in pixels
+
+    // if user is on mobile, then redirect them to the controller view
+    if (userIsOnMobile) {
+      this.$router.push("/controller-view");
+    }
+  }
+};
+</script>
+
 
 <style lang="scss">
 // Import Bulma's core
@@ -43,13 +73,8 @@ $family-primary: "IBM Plex Sans", sans-serif;
 @import "~buefy/src/scss/buefy";
 
 html {
-  padding-top: 2rem;
+  padding-top: 1rem;
   @extend .has-background-light;
-
-  @include tablet {
-    width: 760px;
-    margin: auto;
-  }
 }
 
 a {
