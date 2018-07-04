@@ -22,10 +22,17 @@ export default {
   props: {
     // properties of the cursor
     // defines the orientation and position
-    rotation: Number
+    rotation: Number,
+    disabled: Boolean
   },
   computed: {
     orientationStyle() {
+      if (this.disabled) {
+        return {
+          transform: "rotate(0deg)",
+          opacity: 0.25
+        };
+      }
       return {
         transform: "rotate(" + this.rotation + "deg)"
       };
@@ -35,7 +42,8 @@ export default {
 </script>
 <style scoped>
 img {
-  width: 50vw;
-  height: 50vw;
+  width: 75%;
+  height: 75%;
+  margin: 12.5%;
 }
 </style>

@@ -2,24 +2,12 @@
 <div>
 <h1 class="title is-1">Controller</h1>
 <h3>Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
-<br>
-<!--
-<DeviceStatsDisplay 
-  :eulerAngles="eulerAngles"
-  :acceleration="acceleration"
-/>
--->
 </div>
 </template>
 
 <script>
-import DeviceStatsDisplay from "../components/DeviceStatsDisplay.vue";
-
 export default {
   name: "ControllerView",
-  components: {
-    DeviceStatsDisplay
-  },
   mounted() {
     // check if we can access the device's orientation
     // if we can, then attach an event listener to it
@@ -57,7 +45,7 @@ export default {
         y: Math.round(event.gamma),
         z: Math.round(event.alpha)
       };
-      
+
       // send euler angles for main display (DisplayView)
       this.$socket.emit("SEND_EULER_ANGLES", this.eulerAngles);
     },
@@ -67,7 +55,7 @@ export default {
         y: Math.round(event.acceleration.y),
         z: Math.round(event.acceleration.z)
       };
-      
+
       // send rate of acceleration for main display (DisplayView)
       this.$socket.emit("SEND_ACCELERATION", this.acceleration);
     }

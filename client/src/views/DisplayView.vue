@@ -1,32 +1,52 @@
 <template>
 <div>
 <h1 class="title is-1">Main Display</h1>
-<DeviceStatsDisplay 
-  :eulerAngles="eulerAnglesOfController"
-  :acceleration="acceleration"
-/>
+
+<div class="columns is-centered">
+  <div class="column">
+    <div class="box">
+      <DeviceStats
+        :eulerAngles="eulerAnglesOfController"
+        :acceleration="acceleration"
+      />
+    </div>
+  </div>
+  <div class="column">
+    <div class="box">
+      <DetectShake :acceleration='acceleration'/>
+    </div>
+  </div>
+  <div class="column has-text-centered">
+    <div class="box">
+      <WiiWheel 
+        :disabled="userIsPointingAtScreen"
+        :rotation='eulerAnglesOfController.x'
+      />
+    </div>
+  </div>
+</div>
+
 <WiiCursor 
   v-if="userIsPointingAtScreen"
   :rotation='eulerAnglesOfController.y * 2' 
   :xAxisPosition="cursor_xAxisPosition" 
   :yAxisPosition="cursor_yAxisPosition"
 />
-<WiiWheel 
-  v-if="!userIsPointingAtScreen"
-  :rotation='eulerAnglesOfController.x'
-/>
+
 </div>
 </template>
 
 <script>
-import DeviceStatsDisplay from "../components/DeviceStatsDisplay.vue";
+import DeviceStats from "../components/DeviceStats.vue";
+import DetectShake from "../components/DetectShake.vue";
 import WiiCursor from "../components/WiiCursor.vue";
 import WiiWheel from "../components/WiiWheel.vue";
 
 export default {
   name: "DisplayView",
   components: {
-    DeviceStatsDisplay,
+    DeviceStats,
+    DetectShake,
     WiiCursor,
     WiiWheel
   },

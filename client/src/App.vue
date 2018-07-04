@@ -1,5 +1,7 @@
 <template>
-  <section id="app" class="section">
+<div id="app">
+  <github-corners repo="konaraddio/web-riimotes"></github-corners>
+  <section class="section">
     <!--
     <div class="nav">
       <router-link to="/">DisplayView</router-link> |
@@ -10,13 +12,13 @@
       <router-view/>
     </keep-alive>
   </section>
+</div>
 </template>
 
 <script>
 export default {
   name: "App",
   mounted() {
-
     // get user's screen's width
     // https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 
@@ -27,9 +29,10 @@ export default {
     const screenWidth = w.innerWidth || e.clientWidth || g.clientWidth;
 
     // check if user is on mobile using screen width and user agent string
-    const userIsOnMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    ) && screenWidth < 768; // screenWidth is in pixels
+    const userIsOnMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      ) && screenWidth < 768; // screenWidth is in pixels
 
     // if user is on mobile, then redirect them to the controller view
     if (userIsOnMobile) {
@@ -73,7 +76,6 @@ $family-primary: "IBM Plex Sans", sans-serif;
 @import "~buefy/src/scss/buefy";
 
 html {
-  padding-top: 1rem;
   @extend .has-background-light;
 }
 
@@ -84,9 +86,5 @@ a {
   &:hover {
     border-bottom: 3px solid $primary;
   }
-}
-
-.nav {
-  padding-bottom: 2rem;
 }
 </style>

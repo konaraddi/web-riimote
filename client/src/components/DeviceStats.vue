@@ -1,6 +1,6 @@
 <template>
-<div>
-<h3 class="subtitle is-3">Euler Angles</h3>
+<div class="content">
+<h3 class="title is-3">Euler Angles</h3>
 <p>
   X: {{eulerAngles.x}}°
   <br>
@@ -8,8 +8,7 @@
   <br>
   Z: {{eulerAngles.z}}°
 </p>
-<br>
-<h3 class="subtitle is-3">Acceleration</h3>
+<h3 class="title is-3">Acceleration</h3>
 <p>
   X: {{acceleration.x}} m/s<sup>2</sup>
   <br>
@@ -17,13 +16,12 @@
   <br>
   Z: {{acceleration.z}} m/s<sup>2</sup>
 </p>
-<mark v-if="userIsShaking">Shaking detected</mark>
 </div>
 </template>
 
 <script>
 export default {
-  name: "DeviceStatsDisplay",
+  name: "DeviceStats",
   props: {
     eulerAngles: {
       type: Object,
@@ -43,20 +41,6 @@ export default {
         z: null
       },
       description: "Contains the x y z acceleration"
-    }
-  },
-  computed: {
-    userIsShaking() {
-      const threshold = 12
-      if (
-        Math.abs(this.acceleration.x) > threshold ||
-        Math.abs(this.acceleration.y) > threshold ||
-        Math.abs(this.acceleration.z) > threshold
-      ) {
-        // user is shaking
-        return true;
-      }
-      return false;
     }
   }
 };
