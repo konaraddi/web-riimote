@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-// for sockets
+// for Socket.io
 import io from 'socket.io-client'
 import server_address from './server_address'
 Vue.prototype.$socket = io(`${server_address}`)
@@ -10,7 +10,7 @@ import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 Vue.use(Buefy)
 
-// for a Github corner link
+// for a neat link to Github
 import VueGitHubCorners from 'vue-gh-corners';
 // Import GitHub Corners stylesheet.
 import 'vue-gh-corners/dist/vue-github-corners.css';

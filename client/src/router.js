@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import DisplayView from "./views/DisplayView.vue";
+import MainDisplayView from "./views/MainDisplayView.vue";
 import ControllerView from "./views/ControllerView.vue";
 
 Vue.use(Router);
@@ -9,10 +9,10 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "DisplayView",
-      component: DisplayView,
+      name: "MainDisplayView",
+      component: MainDisplayView,
       meta: {
-        title: "DisplayView"
+        title: "MainDisplayView"
       }
     },
     {

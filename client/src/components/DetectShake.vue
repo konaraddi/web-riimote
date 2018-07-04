@@ -1,3 +1,8 @@
+<!--
+This component uses the x y z acceleration (from it's props)
+to determine if the user is shaking the controller.
+It displays whether the user is shaking the controller.
+-->
 <template>
 <div>
   <h3 class="title is-3">Is the controller shaking?</h3>

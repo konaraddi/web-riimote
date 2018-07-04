@@ -1,3 +1,9 @@
+<!--
+This page is for the user's controller (a smartphone).
+This is what the user will see on their smartphone.
+This page will send the user's controller's orientation and acceleration 
+to be used by the main display. 
+-->
 <template>
 <div>
 <h1 class="title is-1">Controller</h1>
@@ -46,7 +52,7 @@ export default {
         z: Math.round(event.alpha)
       };
 
-      // send euler angles for main display (DisplayView)
+      // send euler angles for main display (MainDisplayView)
       this.$socket.emit("SEND_EULER_ANGLES", this.eulerAngles);
     },
     handleMotion(event) {
@@ -56,7 +62,7 @@ export default {
         z: Math.round(event.acceleration.z)
       };
 
-      // send rate of acceleration for main display (DisplayView)
+      // send rate of acceleration for main display (MainDisplayView)
       this.$socket.emit("SEND_ACCELERATION", this.acceleration);
     }
   }

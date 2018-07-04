@@ -1,3 +1,8 @@
+<!--
+This component displays the Wii cursor.
+It controls the cursor's movement and rotation
+using the props given to it.
+-->
 <template>
 <div>
 <img 

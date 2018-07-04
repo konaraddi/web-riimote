@@ -1,10 +1,15 @@
+<!--
+Users on a mobile device will be redirected to the controller view 
+because a mobile device should be used as the controller.
+Otherwise, by default, the user will see the view for the main display.
+-->
 <template>
 <div id="app">
   <github-corners repo="konaraddio/web-riimotes"></github-corners>
   <section class="section">
     <!--
     <div class="nav">
-      <router-link to="/">DisplayView</router-link> |
+      <router-link to="/">MainDisplayView</router-link> |
       <router-link to="/controller-view">ControllerView</router-link>
     </div>
     -->

@@ -22,7 +22,7 @@ The `server_address.js` file is imported in `client/src/main.js` and is used whe
 
 3.  `npm run serve` in both `client/` and `server/`. Visit the client on a laptop (or larger screen) AND a smartphone.
 
-The `DisplayView` is meant to be visited on a laptop (it will act as the main display). The `ControllerView` is meant to be visited by the smartphone. The smartphone acts as a remote for the main display. 
+The `MainDisplayView` is meant to be visited on a laptop (it will act as the main display). The `ControllerView` is meant to be visited by the smartphone. The smartphone acts as a remote for the main display. 
 
 For the best experience, the smartphone should be 2 feet away from the main display's screen (stand further away if the main display is larger than a typical laptop's screen), point the smartphone's top edge at the center of the main display's screen, and refresh the webpage. You should now be able to point the smartphone at the screen and see a cursor.
 

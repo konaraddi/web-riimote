@@ -1,3 +1,8 @@
+<!--
+This component is used for displaying the Wii Wheel.
+Unless disabled, the user will see the wheel turn as
+they turn their controller.
+-->
 <template>
 <div>
 <img 

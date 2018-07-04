@@ -1,3 +1,7 @@
+<!--
+This page is for the main display.
+This is the page where the cursor, stats, steering wheel, and more would appear.
+-->
 <template>
 <div>
 <h1 class="title is-1">Main Display</h1>
@@ -43,7 +47,7 @@ import WiiCursor from "../components/WiiCursor.vue";
 import WiiWheel from "../components/WiiWheel.vue";
 
 export default {
-  name: "DisplayView",
+  name: "MainDisplayView",
   components: {
     DeviceStats,
     DetectShake,

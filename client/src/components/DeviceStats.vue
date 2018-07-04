@@ -1,3 +1,7 @@
+<!--
+This component is used to display stats about the controller
+(euler angles and acceleration for all 3 planes).
+-->
 <template>
 <div class="content">
 <h3 class="title is-3">Euler Angles</h3>
