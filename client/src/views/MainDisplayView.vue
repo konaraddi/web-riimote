@@ -14,18 +14,33 @@ This is the page where the cursor, stats, steering wheel, and more would appear.
         :acceleration="acceleration"
       />
     </div>
+    <div class="box">
+      <div class="content">
+        <h3 class="title is-3">Is the controller pointing at the screen?
+        <span class="highlight__green" v-if='userIsPointingAtScreen'>Yeah</span>
+        <span class="highlight__blue" v-else>Nope</span>
+        </h3>
+      </div>
+    </div>
   </div>
   <div class="column">
     <div class="box">
-      <DetectShake :acceleration='acceleration'/>
+      <DisplayControllerShaking :acceleration='acceleration'/>
     </div>
   </div>
-  <div class="column has-text-centered">
+  <div class="column">
     <div class="box">
-      <WiiWheel 
-        :disabled="userIsPointingAtScreen"
-        :rotation='eulerAnglesOfController.x'
-      />
+      <div class="content">
+        <h3 class="title is-3">Steering</h3>
+        <p>
+          Turn device sideways and tilt the device to steer. 
+          Keep the top edge of the smartphone pointing to your left.
+        </p>
+        <WiiWheel 
+          :disabled="userIsPointingAtScreen"
+          :rotation='eulerAnglesOfController.x'
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -42,7 +57,7 @@ This is the page where the cursor, stats, steering wheel, and more would appear.
 
 <script>
 import DeviceStats from "../components/DeviceStats.vue";
-import DetectShake from "../components/DetectShake.vue";
+import DisplayControllerShaking from "../components/DisplayControllerShaking.vue";
 import WiiCursor from "../components/WiiCursor.vue";
 import WiiWheel from "../components/WiiWheel.vue";
 
@@ -50,7 +65,7 @@ export default {
   name: "MainDisplayView",
   components: {
     DeviceStats,
-    DetectShake,
+    DisplayControllerShaking,
     WiiCursor,
     WiiWheel
   },
@@ -116,3 +131,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.highlight__green {
+  background-color: #00e676;
+  color: black;
+}
+.highlight__blue {
+  background-color: #00B0FF;
+  color: white;
+}
+</style>

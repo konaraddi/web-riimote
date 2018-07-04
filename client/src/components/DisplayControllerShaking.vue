@@ -4,19 +4,18 @@ to determine if the user is shaking the controller.
 It displays whether the user is shaking the controller.
 -->
 <template>
-<div>
-  <h3 class="title is-3">Is the controller shaking?</h3>
-  <h3 class="title is-3" v-if='userIsShaking'>
-    <span class="yes">Yes</span>
+<div class="content">
+  <h3 class="title is-3">Is the controller shaking?
+  <span class="highlight__green" v-if='controllerIsShaking'>Yeah</span>
+  <span class="highlight__blue" v-else>Nope</span>
   </h3>
-  <h3 class="title is-3" v-else>
-    <span class="no">No</span>
-  </h3>
+  <img v-if='controllerIsShaking' src="../assets/controller_shaking.png" alt="Shaking controller">
+  <img v-else src="../assets/controller_not_shaking.png" alt="Shaking controller">
 </div>
 </template>
 <script>
 export default {
-  name: "DetectShake",
+  name: "DisplayControllerShaking",
   props: {
     acceleration: {
       type: Object,
@@ -30,7 +29,7 @@ export default {
     }
   },
   computed: {
-    userIsShaking() {
+    controllerIsShaking() {
       const threshold = 12;
       if (
         Math.abs(this.acceleration.x) > threshold ||
@@ -45,12 +44,7 @@ export default {
 };
 </script>
 <style scoped>
-.yes {
-  background-color: #00e676;
-  color: black;
-}
-.no {
-  background-color: #ff3d00;
-  color: white;
+h3 {
+  margin-bottom: 0 !important;
 }
 </style>
