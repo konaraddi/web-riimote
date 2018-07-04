@@ -6,28 +6,32 @@ to be used by the main display.
 -->
 <template>
 <div>
+
+<!--
+  The modal shows up by default so the user can position themselves before starting.
+  Once closed, it remains closed until the user refreshes the webpage.
+-->
+<!--TODO: Allow for recalibration (so even after closes this modal)-->
+<ThePrerequisitesModal :onCloseFunction='attemptToAttachEventListener'/>
+
 <h1 class="title is-1">Controller</h1>
 <h3>Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
+
 </div>
 </template>
 
 <script>
+import ThePrerequisitesModal from "../components/ThePrerequisitesModal.vue"
+
 export default {
   name: "ControllerView",
-  mounted() {
-    // check if we can access the device's orientation
-    // if we can, then attach an event listener to it
-    if (window.DeviceOrientationEvent) {
-      this.deviceOrientationSupported = true;
-      // to obtain device's euler angles
-      window.addEventListener("deviceorientation", this.handleOrientation);
-      // to obtain device's x,y,z rate of acceleration
-      window.addEventListener("devicemotion", this.handleMotion, true);
-    }
+  components: {
+    ThePrerequisitesModal
   },
   data() {
     return {
-      deviceOrientationSupported: false,
+      isPrerequisitesModalActive: true,
+      deviceOrientationSupported: window.DeviceOrientationEvent ? true : false,
 
       // using Euler angles of the device on controllerview (smartphone)
       // see https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
@@ -44,6 +48,17 @@ export default {
     };
   },
   methods: {
+    attemptToAttachEventListener() {
+      // if device orientation and motion events are supported, 
+      // then attach event listeners to it
+      if (this.deviceOrientationSupported) {
+
+        // to obtain device's euler angles
+        window.addEventListener("deviceorientation", this.handleOrientation);
+        // to obtain device's x,y,z rate of acceleration
+        window.addEventListener("devicemotion", this.handleMotion, true);
+      }
+    },
     handleOrientation(event) {
       // obtains x y z angles
       this.eulerAngles = {
