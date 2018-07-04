@@ -73,8 +73,8 @@ $link-focus-border: $primary;
 
 $body-line-height: 1.6;
 
-@import url("https://cdnjs.cloudflare.com/ajax/libs/IBM-type/0.5.4/css/ibm-type.min.css");
-$family-primary: "IBM Plex Sans", sans-serif;
+@import url('https://rsms.me/inter/inter-ui.css');
+$family-primary: "Inter UI", sans-serif;
 
 // Import Bulma and Buefy styles
 @import "~bulma";
