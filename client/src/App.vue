@@ -5,7 +5,7 @@ Otherwise, by default, the user will see the view for the main display.
 -->
 <template>
 <div id="app">
-  <github-corners repo="konaraddio/web-riimotes"></github-corners>
+  <github-corners repo="konaraddio/web-riimote"></github-corners>
   <section class="section">
     <!--
     <div class="nav">
