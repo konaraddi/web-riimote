@@ -1,10 +1,10 @@
-# web-riimotes
+# web-riimote
 
 Turn your smartphone into a 3D controller (think wiimote) with just a web app. No need to install mobile or desktop apps.
 
 ![GIF of screen recording of the controller interacting with the main display](./main_display_screen_record.gif)
 
-In the screen recording above, a smartphone is controlling the cursor, steering the wheel, and more. The smartphone is connected to the display (shown above) using sockets.
+In the screen recording above, the user is pointing and wavering around a smartphone to move the cursor. Tilting the smartphone rotates the steering wheel. The smartphone is connected to the display (shown above) using sockets.
 
 ## Getting Started
 
@@ -14,8 +14,9 @@ You can run this project without being familiar with the technologies used. But 
 
 Please be sure to have Node.js installed before continuing. It is the only prerequisite to run this project.
 
-1.  `npm install` in both `client/` and `server/`
-2.  Create a `server_address.js` file in `client/src/` with the following contents:
+1. Clone this repository
+2.  `npm install` in both `client/` and `server/`
+3.  Create a `server_address.js` file in `client/src/` with the following contents:
 
 ```js
 // exporting link to server
@@ -26,7 +27,7 @@ export default `${IP_ADDRESS}:${PORT}`;
 
 The `server_address.js` file is imported in `client/src/main.js` and is used when adding the `$socket` instance property to Vue.
 
-3.  `npm run serve` in both `client/` and `server/`. Visit the client on a laptop (or larger screen) AND a smartphone.
+4.  `npm run serve` in both `client/` and `server/`. Visit the client on a laptop or device with a large screen (this will be the main display) AND a smartphone (this will be the controller).
 
 ### How to set it up
 
@@ -43,8 +44,6 @@ For the best experience, the controller should be 2 to 3 feet away from the main
 ### The Architecture
 
 The server acts as the middleman. The controller emits a message that gets picked up by the server. The server emits the same message but to all clients. Both the controller and main display are clients. So when the server emits a message, the main display can pick it up. This is how the controller can send messages to the main display. Sockets make this possible. Without sockets, the main display would have to constantly check with the server if there are any messages which means a ton of requests per second.
-
-But how does the controller work? What messages is the controller sending? Let's answer those questions in the next section.
 
 ### The Client
 
