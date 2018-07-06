@@ -2,6 +2,10 @@
 
 Turn your smartphone into a 3D controller (think wiimote) with just a web app. No need to install mobile or desktop apps.
 
+![GIF of screen recording of the controller interacting with the main display](./main_display_screen_record.gif)
+
+In the screen recording above, a smartphone is controlling the cursor, steering the wheel, and more. The smartphone is connected to the display (shown above) using sockets.
+
 ## Getting Started
 
 :warning: **This has only been tested on Chrome.** :warning:
