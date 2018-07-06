@@ -56,10 +56,10 @@ This is the page where the cursor, stats, steering wheel, and more would appear.
 </template>
 
 <script>
-import DeviceStats from "../components/DeviceStats.vue";
-import DisplayControllerShaking from "../components/DisplayControllerShaking.vue";
-import WiiCursor from "../components/WiiCursor.vue";
-import WiiWheel from "../components/WiiWheel.vue";
+import DeviceStats from "../components/MainDisplayView/DeviceStats.vue";
+import DisplayControllerShaking from "../components/MainDisplayView/DisplayControllerShaking.vue";
+import WiiCursor from "../components/MainDisplayView/WiiCursor.vue";
+import WiiWheel from "../components/MainDisplayView/WiiWheel.vue";
 
 export default {
   name: "MainDisplayView",

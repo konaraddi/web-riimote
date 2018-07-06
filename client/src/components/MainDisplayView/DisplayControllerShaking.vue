@@ -9,8 +9,8 @@ It displays whether the user is shaking the controller.
   <span class="highlight__green" v-if='controllerIsShaking'>Yeah</span>
   <span class="highlight__blue" v-else>Nope</span>
   </h3>
-  <img v-if='controllerIsShaking' src="../assets/controller_shaking.png" alt="Shaking controller">
-  <img v-else src="../assets/controller_not_shaking.png" alt="Shaking controller">
+  <img v-if='controllerIsShaking' src="@/assets/controller_shaking.png" alt="Shaking controller">
+  <img v-else src="@/assets/controller_not_shaking.png" alt="Shaking controller">
 </div>
 </template>
 <script>

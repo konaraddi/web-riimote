@@ -6,7 +6,7 @@ they turn their controller.
 <template>
 <div>
 <img 
-  src="../assets/wii_wheel.png" 
+  src="@/assets/wii_wheel.png" 
   alt="Wii Wheel" 
   :style="orientationStyle">
 </div>  

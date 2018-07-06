@@ -6,7 +6,7 @@ using the props given to it.
 <template>
 <div>
 <img 
-  src="../assets/wii_cursor.png" 
+  src="@/assets/wii_cursor.png" 
   alt="Wii Cursor" 
   :style="orientationAndPositionStyle">
 </div>  
