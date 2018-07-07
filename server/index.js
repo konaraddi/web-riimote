@@ -1,3 +1,4 @@
+const DEBUG_MODE = true;
 const PORT = 3000;
 
 const Koa = require("koa");
@@ -9,13 +10,19 @@ const server = http.createServer(app.callback());
 const io = new socket(server);
 
 io.on("connection", function(socket) {
-  console.log(`${socket.id} connected`);
+
+  if(DEBUG_MODE){
+    log(`${socket.id} connected`, DEBUG_MODE);
+  }
 
   const room = getRandomInt(1024, 9999); // TODO assign an unused number
 
   socket.join(room);
-  console.log(`${socket.id} in room ${room}`);
   socket.emit("ROOM", room);
+  
+  if(DEBUG_MODE){
+    log(`${socket.id} in room ${room}`, DEBUG_MODE);
+  }
 
   // SEND_EULER_ANGLES is emitted by Controller
   socket.on("SEND_EULER_ANGLES", function(data) {
@@ -27,12 +34,12 @@ io.on("connection", function(socket) {
   });
 
   socket.on("disconnect", function() {
-    console.log(`${socket.id} disconnected`);
+    log(`${socket.id} disconnected`, DEBUG_MODE);
   });
 });
 
 server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  log(`Server listening on port ${PORT}`, DEBUG_MODE);
 });
 
 /**
@@ -42,4 +49,9 @@ server.listen(PORT, () => {
  */
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * Math.floor(max - min)) + min;
+}
+
+// logs messages only on debug mode
+function log(message, debugMode){
+  debugMode ? console.log(message) : null;
 }
