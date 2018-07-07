@@ -13,7 +13,7 @@ using the props given to it.
 </template>
 <script>
 export default {
-  name: 'WiiCursor',
+  name: "WiiCursor",
   props: {
     // properties of the cursor
     // defines the orientation and position
@@ -24,13 +24,13 @@ export default {
   computed: {
     orientationAndPositionStyle() {
       return {
-        transform: 'rotate(' + this.rotation + 'deg)',
-        top: this.yAxisPosition + '%',
-        left: this.xAxisPosition + '%'
-      }
+        transform: "rotate(" + this.rotation + "deg)",
+        top: this.yAxisPosition + "%",
+        left: this.xAxisPosition + "%"
+      };
     }
   }
-}
+};
 </script>
 <style scoped>
 img {

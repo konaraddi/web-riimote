@@ -26,11 +26,11 @@
 </template>
 <script>
 export default {
-  name: 'TheModal',
-  data(){
+  name: "TheModal",
+  data() {
     return {
       isModalActive: true
-    }
+    };
   }
-}
+};
 </script>

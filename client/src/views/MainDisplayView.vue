@@ -61,7 +61,7 @@ This is the page where the cursor, stats, steering wheel, and more would appear.
 <script>
 import DeviceStats from "../components/MainDisplayView/DeviceStats.vue";
 import DisplayControllerShaking from "../components/MainDisplayView/DisplayControllerShaking.vue";
-import TheModal from '../components/MainDisplayView/TheModal.vue';
+import TheModal from "../components/MainDisplayView/TheModal.vue";
 import WiiCursor from "../components/MainDisplayView/WiiCursor.vue";
 import WiiWheel from "../components/MainDisplayView/WiiWheel.vue";
 
@@ -76,9 +76,9 @@ export default {
   },
   mounted() {
     // listen for this main display's room number
-    this.$socket.on('ROOM', room => {
-      this.currentRoom = room
-    })
+    this.$socket.on("ROOM", room => {
+      this.currentRoom = room;
+    });
 
     // start listening for Euler angles from ControllerView
     this.$socket.on("EULER_ANGLES", eulerAngles => {
@@ -135,7 +135,7 @@ export default {
         30 >= this.eulerAnglesOfController.x &&
         this.eulerAnglesOfController.x >= -30
       ) {
-        return true
+        return true;
       }
       return false;
     }
@@ -149,7 +149,7 @@ export default {
   color: black;
 }
 .highlight__blue {
-  background-color: #00B0FF;
+  background-color: #00b0ff;
   color: white;
 }
 </style>

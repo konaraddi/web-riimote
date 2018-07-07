@@ -99,9 +99,9 @@ export default {
   methods: {
     pairControllerWithMainDisplay() {
       this.userIsReady = true;
-      this.$socket.emit('SWITCH_ROOMS', {
+      this.$socket.emit("SWITCH_ROOMS", {
         new_room: this.roomToJoin
-      })
+      });
       this.currentRoom = this.roomToJoin;
       this.attemptToAttachEventListeners();
     },
