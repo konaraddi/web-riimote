@@ -12,10 +12,11 @@ to be used by the main display.
   Once closed, it remains closed until the user refreshes the webpage.
 -->
 <!--TODO: Allow for recalibration (so even after closes this modal)-->
-<ThePrerequisitesModal :onCloseFunction='attemptToAttachEventListener'/>
+<ThePrerequisitesModal @on-close='pairControllerWithMainDisplay'/>
 
 <h1 class="title is-1">Controller</h1>
 <h3 class="title is-3">Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
+<p>Room #{{currentRoom}}</p>
 <div v-if="!deviceOrientationSupported">
   <p>
   Sorry, this device or browser is not supported.
@@ -28,7 +29,7 @@ to be used by the main display.
 </template>
 
 <script>
-import ThePrerequisitesModal from "../components/ThePrerequisitesModal.vue"
+import ThePrerequisitesModal from "../components/ThePrerequisitesModal.vue";
 
 export default {
   name: "ControllerView",
@@ -37,6 +38,7 @@ export default {
   },
   data() {
     return {
+      currentRoom: -1,
       isPrerequisitesModalActive: true,
       deviceOrientationSupported: !!window.DeviceOrientationEvent,
 
@@ -55,11 +57,15 @@ export default {
     };
   },
   methods: {
-    attemptToAttachEventListener() {
-      // if device orientation and motion events are supported, 
+    pairControllerWithMainDisplay(roomToJoin){
+      console.log(roomToJoin)
+      this.currentRoom = roomToJoin
+      this.attemptToAttachEventListeners()
+    },
+    attemptToAttachEventListeners() {
+      // if device orientation and motion events are supported,
       // then attach event listeners to it
       if (this.deviceOrientationSupported) {
-
         // to obtain device's euler angles
         window.addEventListener("deviceorientation", this.handleOrientation);
         // to obtain device's x,y,z rate of acceleration
@@ -75,7 +81,10 @@ export default {
       };
 
       // send euler angles for main display (MainDisplayView)
-      this.$socket.emit("SEND_EULER_ANGLES", this.eulerAngles);
+      this.$socket.emit("SEND_EULER_ANGLES", {
+        room: this.currentRoom,
+        euler_angles: this.eulerAngles
+      });
     },
     handleMotion(event) {
       this.acceleration = {
@@ -85,7 +94,10 @@ export default {
       };
 
       // send rate of acceleration for main display (MainDisplayView)
-      this.$socket.emit("SEND_ACCELERATION", this.acceleration);
+      this.$socket.emit("SEND_ACCELERATION", {
+        room: this.currentRoom,
+        acceleration: this.acceleration
+      });
     }
   }
 };

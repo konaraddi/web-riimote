@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Use Socket.io rooms so this project can be hosted and visitors can test it out 
+- [X] Use Socket.io rooms so this project can be hosted and visitors can test it out 
 - [ ] Include a video of this project in action
 - [ ] Write tests
 - [ ] End user calibration (and recalibration)

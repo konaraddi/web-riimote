@@ -4,7 +4,7 @@ This is the page where the cursor, stats, steering wheel, and more would appear.
 -->
 <template>
 <div>
-<h1 class="title is-1">Main Display</h1>
+<h1 class="title is-1">Main Display - (room #<mark>{{currentRoom}}</mark>)</h1>
 
 <div class="columns is-centered">
   <div class="column">
@@ -70,6 +70,11 @@ export default {
     WiiWheel
   },
   mounted() {
+    // listen for this main display's room number
+    this.$socket.on('ROOM', room => {
+      this.currentRoom = room
+    })
+
     // start listening for Euler angles from ControllerView
     this.$socket.on("EULER_ANGLES", eulerAngles => {
       this.eulerAnglesOfController = eulerAngles;
@@ -82,6 +87,7 @@ export default {
   },
   data() {
     return {
+      currentRoom: -1,
       acceleration: {
         x: null,
         y: null,
