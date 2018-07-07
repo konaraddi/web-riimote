@@ -1,6 +1,6 @@
 # web-riimote
 
-Turn your smartphone into a 3D controller (think wiimote) with just a web app. No need to install mobile or desktop apps.
+Turn your smartphone into a 3D controller (think wiimote) with just a web app. No need to install mobile or desktop apps. :warning: **This has only been tested on Chrome.** :warning:
 
 Just visit [web-riimote.herokuapp.com/](https://web-riimote.herokuapp.com/) on a laptop/desktop AND a smartphone. Your smartphone will be the controller and your laptop/desktop will be the main display.
 
@@ -10,13 +10,13 @@ In the screen recording above, the user is pointing and wavering around a smartp
 
 ## Getting Started
 
-:warning: **This has only been tested on Chrome.** :warning:
+This section is for people who would like to run this project on their own machine.
 
 You can run this project without being familiar with the technologies used. But if you'd like to make changes, then please be familiar with Vue, Node, Koa, and Socket.io. The client uses Vue. The server uses Node, Koa, and Socket.io.
 
 Please be sure to have Node.js installed before continuing. It is the only prerequisite to run this project.
 
-1. Clone this repository
+1.  Clone this repository
 2.  `npm install` in both `client/` and `server/`
 3.  Create a `server_address.js` file in `client/src/` with the following contents:
 
@@ -39,7 +39,7 @@ Here's a poorly, partially sketched illustration of what your set up should look
 
 The user visits the web app on two devices. One device will be the main display (this device should be a laptop or desktop computer) and the other device will be the 3D controller (this device should be a smartphone). The controller is used to control and interact with objects on the main display.
 
-For the best experience, the controller should be 2 to 3 feet away from the main display's screen (stand further away if the main display is larger than a typical laptop's screen), point the controller's top edge (the top of the smartphone) at the center of the main display's screen, and refresh the webpage. You should now be able to point the controller at the screen and see a cursor. 
+For the best experience, the controller should be 2 to 3 feet away from the main display's screen (stand further away if the main display is larger than a typical laptop's screen), point the controller's top edge (the top of the smartphone) at the center of the main display's screen, and refresh the webpage. You should now be able to point the controller at the screen and see a cursor.
 
 ## How it works
 
@@ -49,13 +49,14 @@ The server acts as the middleman. The controller emits a message that gets picke
 
 ### The Client
 
-The client is the web app which has two main web pages. One web page is for the main display; we'll refer to this as the `MainDisplayView`. The other web page is for the controller; we'll refer to this as the `ControllerView`. When the user visits the web app on the a large screen, they see the web page for the main display. When the user visits the web app on a small device, like a smartphone, they see the web page for the controller. 
+The client is the web app which has two main web pages. One web page is for the main display; we'll refer to this as the `MainDisplayView`. The other web page is for the controller; we'll refer to this as the `ControllerView`. When the user visits the web app on the a large screen, they see the web page for the main display. When the user visits the web app on a small device, like a smartphone, they see the web page for the controller.
 
 The `ControllerView` uses the [DeviceOrientation API](https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation) to gather data from the controller's sensors. It can gather the following data:
-* the rate of acceleration along the x, y, and z axes
-* the number of degrees by which the device is tilted on the x, y, and z axes (using Euler angles)
 
-There's much more data the controller _could_ gather but this is all it needs. It sends this data to the server. The server broadcasts the data. The `MainDisplayView` picks up the data and processes it to determine where to the cursor should go, whether the user is shaking the controller, and more. 
+- the rate of acceleration along the x, y, and z axes
+- the number of degrees by which the device is tilted on the x, y, and z axes (using Euler angles)
+
+[There's much more data the controller _could_ gather](https://whatwebcando.today/) but this is all it needs. It sends this data to the server. The server broadcasts the data. The `MainDisplayView` picks up the data and processes it to determine where the cursor should be and whether the user is shaking the controller.
 
 ## Built With
 
@@ -74,4 +75,3 @@ This project was inspired by the [2016 Android Experiments Winner](https://exper
 ## License
 
 [MIT](LICENSE.txt)
-
