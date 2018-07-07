@@ -1,5 +1,5 @@
 {
-  "name": "socket-server",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,13 +7,16 @@
     "start": "node index.js",
     "serve": "nodemon index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Omkar Konaraddi",
+  "license": "MIT",
   "dependencies": {
     "koa": "^2.5.1",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.17.5"
+  },
+  "engines": {
+    "node": "8.11.3"
   }
 }
