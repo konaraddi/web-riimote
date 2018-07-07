@@ -7,39 +7,75 @@ to be used by the main display.
 <template>
 <div>
 
-<!--
-  The modal shows up by default so the user can position themselves before starting.
-  Once closed, it remains closed until the user refreshes the webpage.
--->
-<!--TODO: Allow for recalibration (so even after closes this modal)-->
-<ThePrerequisitesModal @on-close='pairControllerWithMainDisplay'/>
+  <!--
+    User sets up the web app on two devices, 
+    "pairs" them by joinin the same room as the main display,
+    and, ideally, stands in the right place with the controller pointed
+  -->
+  <section v-if="!userIsReady">
+    <h1 class="title is-1">Get Ready</h1>
+    <p>
+      1. Please visit this website on a laptop/desktop too. Afterwards, enter the room # you see on your laptop/desktop.
+    </p>
+    <br>  
+    <b-field label="Room #">
+      <b-input
+        size='is-medium'
+        icon='laptop'
+        type="number"
+        v-model="roomToJoin"
+        placeholder="Main Display's room #"
+        required>
+      </b-input>
+    </b-field>
+    <p>
+      2. Please position yourself so you are standing in front of your main display.
+      Then point your smartphone at the center of the display.
+    </p>
+    <br>
+    <button 
+      class="button is-primary is-medium" 
+      type="button" 
+      :disabled='!roomToJoin'
+      @click="() => pairControllerWithMainDisplay()">
+        Connect to Main Display
+    </button>  
+  </section>
 
-<h1 class="title is-1">Controller</h1>
-<h3 class="title is-3">Supports device orientation: <mark>{{deviceOrientationSupported}}</mark></h3>
-<p>Room #{{currentRoom}}</p>
-<div v-if="!deviceOrientationSupported">
-  <p>
-  Sorry, this device or browser is not supported.
-  In order for this to work, the device and browser need to support DeviceOrientationEvent.
-  </p>
-  <br>
-  <p>The author tested this app with Chrome on the Moto X4 (Android One version).</p>
-</div>
+  <!--Once user is ready-->
+  <section v-if="userIsReady">
+    <h1 class="title is-1">Controller</h1>
+    <h3 class="title is-3">Room #<mark>{{currentRoom}}</mark></h3>
+    <div v-if="!deviceOrientationSupported">
+      <p>
+      Sorry, this device or browser is not supported.
+      In order for this to work, the device and browser need to support DeviceOrientationEvent.
+      </p>
+      <br>
+      <p>Try Chrome on a recent Android or Apple device.</p>
+    </div>
+
+    <!--take user back to the onboarding screen -->
+    <br>
+    <button 
+      class="button is-primary is-medium" 
+      type="button" 
+      @click="() => userIsReady = false">
+        Join another room
+    </button>  
+  </section>
+
 </div>
 </template>
 
 <script>
-import ThePrerequisitesModal from "../components/ThePrerequisitesModal.vue";
-
 export default {
   name: "ControllerView",
-  components: {
-    ThePrerequisitesModal
-  },
   data() {
     return {
-      currentRoom: -1,
-      isPrerequisitesModalActive: true,
+      userIsReady: false,
+      roomToJoin: null,
+      currentRoom: null,
       deviceOrientationSupported: !!window.DeviceOrientationEvent,
 
       // using Euler angles of the device on controllerview (smartphone)
@@ -57,10 +93,13 @@ export default {
     };
   },
   methods: {
-    pairControllerWithMainDisplay(roomToJoin){
-      console.log(roomToJoin)
-      this.currentRoom = roomToJoin
-      this.attemptToAttachEventListeners()
+    pairControllerWithMainDisplay() {
+      this.userIsReady = true;
+      this.$socket.emit('SWITCH_ROOMS', {
+        new_room: this.roomToJoin
+      })
+      this.currentRoom = this.roomToJoin;
+      this.attemptToAttachEventListeners();
     },
     attemptToAttachEventListeners() {
       // if device orientation and motion events are supported,

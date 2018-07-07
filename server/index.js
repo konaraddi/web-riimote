@@ -11,18 +11,23 @@ const io = new socket(server);
 
 io.on("connection", function(socket) {
 
-  if(DEBUG_MODE){
-    log(`${socket.id} connected`, DEBUG_MODE);
-  }
+  log(`${socket.id} connected`, DEBUG_MODE);
 
-  const room = getRandomInt(1024, 9999); // TODO assign an unused number
+  const room = getRandomInt(10247, 99999); // TODO assign an unused number instead of this random one
 
+  socket.room = room
   socket.join(room);
-  socket.emit("ROOM", room);
+  socket.emit("ROOM", room); // Main Display uses this to display its room number
   
-  if(DEBUG_MODE){
-    log(`${socket.id} in room ${room}`, DEBUG_MODE);
-  }
+  log(`${socket.id} in room ${room}`, DEBUG_MODE);
+
+  // used for the controller to switch to the main display's room
+  socket.on('SWITCH_ROOMS', function(data){
+    socket.leave(socket.room)
+    socket.join(data.new_room)
+    socket.room = data.new_room
+    log(`${socket.id} switched to ${socket.room}`, DEBUG_MODE)
+  })
 
   // SEND_EULER_ANGLES is emitted by Controller
   socket.on("SEND_EULER_ANGLES", function(data) {
