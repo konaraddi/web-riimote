@@ -4,6 +4,9 @@ This is the page where the cursor, stats, steering wheel, and more would appear.
 -->
 <template>
 <div>
+
+<TheModal />
+
 <h1 class="title is-1">Main Display - (room #<mark>{{currentRoom}}</mark>)</h1>
 
 <div class="columns is-centered">
@@ -58,6 +61,7 @@ This is the page where the cursor, stats, steering wheel, and more would appear.
 <script>
 import DeviceStats from "../components/MainDisplayView/DeviceStats.vue";
 import DisplayControllerShaking from "../components/MainDisplayView/DisplayControllerShaking.vue";
+import TheModal from '../components/MainDisplayView/TheModal.vue';
 import WiiCursor from "../components/MainDisplayView/WiiCursor.vue";
 import WiiWheel from "../components/MainDisplayView/WiiWheel.vue";
 
@@ -66,6 +70,7 @@ export default {
   components: {
     DeviceStats,
     DisplayControllerShaking,
+    TheModal,
     WiiCursor,
     WiiWheel
   },
