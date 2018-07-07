@@ -13,29 +13,33 @@ to be used by the main display.
     and, ideally, stands in the right place with the controller pointed
   -->
   <section v-if="!userIsReady">
-    <h1 class="title is-1">Get Ready</h1>
+    <h1 class="title is-1">Pair Controller</h1>
     <p>
-      1. Please visit this website on a laptop/desktop too. Afterwards, enter the room # you see on your laptop/desktop.
+      <strong>Please visit this website on a laptop or desktop too!</strong> 
+      This device will be your controller. 
+      Your laptop/desktop will be the main display. 
     </p>
-    <br>  
-    <b-field label="Room #">
+    <br>
+    <p>
+      Stand in front of the main display and point your smartphone at the center of the display.
+    </p>
+    <br>
+    <b-field label="Enter Room #" 
+        @submit="() => pairControllerWithMainDisplay()">
       <b-input
         size='is-medium'
         icon='laptop'
         type="number"
         v-model="roomToJoin"
-        placeholder="Main Display's room #"
+        placeholder="Main Display's Room #"
+        @keyup.native.enter="() => pairControllerWithMainDisplay()"
         required>
       </b-input>
     </b-field>
-    <p>
-      2. Please position yourself so you are standing in front of your main display.
-      Then point your smartphone at the center of the display.
-    </p>
     <br>
     <button 
       class="button is-primary is-medium" 
-      type="button" 
+      type="submit" 
       :disabled='!roomToJoin'
       @click="() => pairControllerWithMainDisplay()">
         Connect to Main Display

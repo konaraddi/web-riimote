@@ -9,6 +9,8 @@
           <strong>Please visit this website on a smartphone too!</strong>
           <br>
           This device will be the main display and the smartphone will be the controller.
+          <br>
+          You'll need to pair the controller with this display.
         </p>
       </section>
       <footer class="modal-card-foot">
