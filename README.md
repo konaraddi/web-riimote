@@ -1,12 +1,12 @@
 # web-riimote
 
-Turn your smartphone into a 3D controller (think wiimote) with just a web app. No need to install mobile or desktop apps. :warning: **This has only been tested on Chrome.** :warning:
-
-Just visit [web-riimote.herokuapp.com/](https://web-riimote.herokuapp.com/) on a laptop/desktop AND a smartphone. Your smartphone will be the controller and your laptop/desktop will be the main display.
-
 ![GIF of screen recording of the controller interacting with the main display](./main_display_screen_record.gif)
 
-In the screen recording above, the user is pointing and wavering around a smartphone to move the cursor. Tilting the smartphone rotates the steering wheel. The smartphone is connected to the display (shown above) using sockets.
+Turn your smartphone into a 3D controller (think Wii remote) with just a web app. No need to install mobile or desktop apps. :warning: **Works best on Chrome.** :warning:
+
+Just visit [web-riimote.herokuapp.com/](https://web-riimote.herokuapp.com/) on a laptop/desktop AND a smartphone. Your smartphone will be the controller and your laptop/desktop will be the main display. [Here's a video showing this project in action](https://www.youtube.com/watch?v=O2r1-lR6Xq8).
+
+In the gif recording at the top of this README, the user is pointing and wavering around a smartphone to move the cursor. Tilting the smartphone rotates the steering wheel. The smartphone is connected to the display (shown above) using sockets.
 
 ## Getting Started
 
@@ -70,7 +70,8 @@ The `ControllerView` uses the [DeviceOrientation API](https://developer.mozilla.
 
 The image of the Wii cursor came from [wiibrew.org and was made by drmr](http://wiibrew.org/wiki/Wii_Homebrew_Cursors) and is available in the public domain.
 The image of the Wii wheel came from [mariokartwii.wikia.com](http://mariokartwii.wikia.com/wiki/Wii_Wheel).
-This project was inspired by the [2016 Android Experiments Winner](https://experiments.withgoogle.com/3d-controller).
+
+This project was inspired by the [2016 Android Experiments Winner](https://experiments.withgoogle.com/3d-controller). The 2016 Android Experiments winner turns your smartphone into a 3D controller using Chromecast and an Android app. But `web-riimote` demonstrates that it's possible to do the same with just a web app.
 
 ## License
 
