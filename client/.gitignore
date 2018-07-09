@@ -23,5 +23,5 @@ yarn-error.log*
 *.sln
 *.sw*
 
-# Server URL (e.g. 123.456.7.890:3000)
-src/server_url.js
+# Server Address
+src/server_address.js
