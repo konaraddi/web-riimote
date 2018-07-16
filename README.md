@@ -1,20 +1,20 @@
 # web-riimote
 
-![GIF of screen recording of the controller interacting with the main display](./main_display_screen_record.gif)
-
-Turn your smartphone into a 3D controller (think Wii remote) with just a web app. No need to install mobile or desktop apps. :warning: **Works best on Chrome.** :warning:
+Turn your smartphone into a 3D controller (think Wii remote) with a web app. No need to install mobile or desktop apps. :warning: **Works best on Chrome.** :warning:
 
 Just visit [web-riimote.herokuapp.com/](https://web-riimote.herokuapp.com/) on a laptop/desktop AND a smartphone. Your smartphone will be the controller and your laptop/desktop will be the main display. [Here's a video showing this project in action](https://www.youtube.com/watch?v=O2r1-lR6Xq8).
 
-In the gif recording at the top of this README, the user is pointing and wavering around a smartphone to move the cursor. Tilting the smartphone rotates the steering wheel. The smartphone is connected to the display (shown above) using sockets.
+In the gif recording below, the user is pointing and wavering around a smartphone to move the cursor. Tilting the smartphone rotates the steering wheel. The smartphone is connected to the display (shown above) using sockets.
+
+![GIF of screen recording of the controller interacting with the main display](./main_display_screen_record.gif)
 
 ## Getting Started
 
 This section is for people who would like to run this project on their own machine.
 
-You can run this project without being familiar with the technologies used. But if you'd like to make changes, then please be familiar with Vue, Node, Koa, and Socket.io. The client uses Vue. The server uses Node, Koa, and Socket.io.
+You can run this project without being familiar with the technologies used. But, if you'd like to make changes, then please be familiar with Vue, Node, Koa, and Socket.io. The client uses Vue. The server uses Node, Koa, and Socket.io.
 
-Please be sure to have Node.js installed before continuing. It is the only prerequisite to run this project.
+Please be sure to have Node.js installed before continuing. It is the only prerequisite to run this project.  
 
 1.  Clone this repository
 2.  `npm install` in both `client/` and `server/`
@@ -37,9 +37,12 @@ Here's a poorly, partially sketched illustration of what your set up should look
 
 ![Illustration of an ideal set up](./illustration_of_ideal_set_up.png)
 
-The user visits the web app on two devices. One device will be the main display (this device should be a laptop or desktop computer) and the other device will be the 3D controller (this device should be a smartphone). The controller is used to control and interact with objects on the main display.
+The user visits the web app on two devices. One device will be the main display (this device should be a laptop or desktop computer), and the other device will be the 3D controller (this device should be a smartphone). The controller is used to interact with objects on the main display.
 
-For the best experience, the controller should be 2 to 3 feet away from the main display's screen (stand further away if the main display is larger than a typical laptop's screen), point the controller's top edge (the top of the smartphone) at the center of the main display's screen, and refresh the webpage. You should now be able to point the controller at the screen and see a cursor.
+For the best experience:
+1. Hold the controller 2 to 3 feet away from the main display's screen (further away if the main display is larger than a typical laptop's screen)
+2. Point the controller's top edge (the top of the smartphone) at the center of the main display's screen, and refresh the webpage.
+3. You should now be able to point the controller at the screen and see a cursor.
 
 ## How it works
 
@@ -49,14 +52,14 @@ The server acts as the middleman. The controller emits a message that gets picke
 
 ### The Client
 
-The client is the web app which has two main web pages. One web page is for the main display; we'll refer to this as the `MainDisplayView`. The other web page is for the controller; we'll refer to this as the `ControllerView`. When the user visits the web app on the a large screen, they see the web page for the main display. When the user visits the web app on a small device, like a smartphone, they see the web page for the controller.
+The client is the web app which has two main web pages. One web page is for the main display; we'll refer to this as the `MainDisplayView`. The other web page is for the controller; we'll refer to this as the `ControllerView`. When the user visits the web app on a large screen, they see the web page for the main display. When the user visits the web app on a small screen, like a smartphone, they see the web page for the controller.
 
 The `ControllerView` uses the [DeviceOrientation API](https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation) to gather data from the controller's sensors. It can gather the following data:
 
 - the rate of acceleration along the x, y, and z axes
 - the number of degrees by which the device is tilted on the x, y, and z axes (using Euler angles)
 
-[There's much more data the controller _could_ gather](https://whatwebcando.today/) but this is all it needs. It sends this data to the server. The server broadcasts the data. The `MainDisplayView` picks up the data and processes it to determine where the cursor should be and whether the user is shaking the controller.
+[There's much more data the controller _could_ gather](https://whatwebcando.today/), but this is all it needs. It sends this data to the server. The server broadcasts the data. The `MainDisplayView` picks up the data and processes it to determine where the cursor should be and whether the user is shaking the controller.
 
 ## Built With
 
