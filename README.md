@@ -1,12 +1,12 @@
 # web-riimote
 
+![GIF of screen recording of the controller interacting with the main display](./main_display_screen_record.gif)
+
 Turn your smartphone into a 3D controller (think Wii remote) with a web app. No need to install mobile or desktop apps. :warning: **Works best on Chrome.** :warning:
 
 Just visit [web-riimote.herokuapp.com/](https://web-riimote.herokuapp.com/) on a laptop/desktop AND a smartphone. Your smartphone will be the controller and your laptop/desktop will be the main display. [Here's a video showing this project in action](https://www.youtube.com/watch?v=O2r1-lR6Xq8).
 
-In the gif recording below, the user is pointing and wavering around a smartphone to move the cursor. Tilting the smartphone rotates the steering wheel. The smartphone is connected to the display (shown above) using sockets.
-
-![GIF of screen recording of the controller interacting with the main display](./main_display_screen_record.gif)
+In the gif recording above, the user is pointing and wavering around a smartphone to move the cursor. Tilting the smartphone rotates the steering wheel. The smartphone is connected to the display (shown above) using sockets.
 
 ## Getting Started
 
